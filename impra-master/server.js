@@ -175,19 +175,7 @@ app.get("/campground/:id",function(req,res){
         }
     });
 });
-//Description route
-app.post("/campground/:id/description",function(req,res){
-    Campground.findById(req.params.id,function(err,campground){
-        if(err){
-            console.log(err);
-            console.log("Some error occured")
-        }
-        else{
-            var desc=nl2br(campground.description);
-            res.send({desc:desc});
-        }
-    });
-});
+
 
 //Comment routes
 app.post("/campground/:id/comments",isLoggedIn,function(req,res){
@@ -306,9 +294,7 @@ app.get("/logout",function(req,res){
 });
 
 //HeartMeter Routes
-app.post("/infoforheart",function(req,res){
-    res.send({currentUser:req.user});
-});
+
 app.post("/campground/:id/heartlike",isLoggedIn,function(req,res){
     var likecount;
     Campground.findById(req.params.id,function(err,campground){
